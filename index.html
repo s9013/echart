@@ -10,6 +10,7 @@
 </body>
 <script src="vender/echarts-plain-original.js"></script>
 <script>
+  // option
   var option = {
                     tooltip: {
                         show: true
@@ -36,8 +37,12 @@
                         }
                     ]
                 };
-  // get dom
-  echarts.init(document.getElementById('chart')).setOption(option);
+
+  // init
+  var chart = echarts.init(document.getElementById('chart'));
+  
+  // set option
+  chart.setOption(option);
 
 </script>
 </html>
