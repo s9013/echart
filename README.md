@@ -7,6 +7,9 @@ echart
 
 demo1 http://s9013.github.io/echart/app/index.html
 
+中国地图 http://s9013.github.io/echart/app/china.html
+
+
 导入echarts.js
 
 // option
