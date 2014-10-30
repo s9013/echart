@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<title>中国地图</title>
+</head>
+<body>
+<div id="chart" style="height:800px"></div>
+<script  src="vender/echarts-plain-original-map.js"></script>
+<script>
+  var option = {
+    tooltip : {
+        trigger: 'item',
+        formatter: '{b}'
+    },
+    series : [
+        {
+            type: 'map',
+            mapType: 'china',
+            itemStyle:{
+                normal:{label:{show:true}},
+                emphasis:{label:{show:true}}
+            },
+            data:[
+                //{name: '北京',value: Math.round(Math.random()*1000)} 
+            ]
+        }
+    ]
+  };
+
+  echarts.init(document.getElementById('chart')).setOption(option);
+</script>
+</body>
+</html>
