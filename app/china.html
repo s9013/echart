@@ -2,6 +2,11 @@
 <html>
 <head>
  	<title>中国地图</title>
+ 	<style type="text/css">
+	body {
+		background-color: rgba(86, 147, 91, 0.87);
+	}
+ 	</style>
 </head>
 <body>
 <div id="chart" style="height:800px"></div>
@@ -21,7 +26,9 @@
                 emphasis:{label:{show:true}}
             },
             data:[
-                //{name: '北京',value: Math.round(Math.random()*1000)} 
+                	{name:'内蒙古',selected:true},
+               		{name:'上海',selected:true},
+               		{name:'江苏',selected:true}
             ]
         }
     ]
