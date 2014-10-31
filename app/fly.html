@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<title>fly</title>
+</head>
+<body>
+<div id="chart" style="height:800px"></div>
+<script  src="vender/echarts-plain-original-map.js"></script>
+<script>
+  var option = {
+    backgroundColor:'#1b1b1b',//背景色
+    title:{//标题
+      text:'是这里吗',
+      subtext:'真的是这里吗',
+      x:'center',
+      y:'top',
+      textStyle:{
+          fontSize: 45, 
+          fontWeight: 'bolder', 
+          color: 'rgba(154, 75, 168, 1)'
+      },
+      subtextStyle:{
+          fontSize: 25, 
+          fontWeight: 'bolder', 
+          color: 'rgba(154, 75, 168, 0.5)'
+      }
+    },
+    
+    tooltip : {
+        trigger: 'item',
+        formatter: function (v) {
+            return v[1];
+        }
+    },
+    series : [
+        {
+            name: '上海',
+            type: 'map',
+            mapType: 'china',
+            roam: true,
+            data:[],
+            geoCoord: {
+              '上海': [121.4648,31.2891],
+              '赤峰': [118.87,42.28],
+              '天津': [117.4219,39.4189]
+            },
+            itemStyle:{
+                normal:{
+                    borderColor:'rgba(100,149,237,1)',
+                    borderWidth:0.5,
+                    areaStyle:{
+                        color: '#1b1b1b'
+                    },
+                    label:{show:true}},
+                emphasis:{
+                    label:{show:true},
+                    borderColor:'#1b1b1b',
+                    areaStyle:{
+                        color: 'rgba(100,149,237,1)'
+                    },
+                }
+            },
+            markPoint : {
+                symbol:'emptyCircle',
+                effect : {
+                    show: true,
+                    shadowBlur : 2
+                },
+                itemStyle : {
+                    normal:{
+                        color:'skyblue'
+                    }
+                },
+                data : [
+                    {name : '上海', value : ''},
+                    {name : '赤峰', value : ''}
+                ]
+            },
+            markLine : {
+                smooth:true,
+                effect : {
+                    show: true,
+                    loop:true,
+                    scaleSize: 2,
+                    period: 25,
+                    color: 'red',//炫光颜色
+                    shadowColor :'yellow',//光影颜色
+                    shadowBlur: 10//光影模糊度
+                },
+                symbol: ['circle', 'arrow'],  //起始类型
+                itemStyle : {
+                    normal: {
+                        color:'red',
+                        borderWidth:2,
+                        label: {
+                          show: true
+                        }
+                    }
+                },
+                data : [
+                    [{name:'上海'},{name:'赤峰'}], 
+                    //[{name:'上海'},{name:'天津'}],
+                    //[{name:'天津'},{name:'赤峰'}]  
+                ]
+                  
+            }
+        }
+    ]
+};
+                    
+
+  // init
+  var chart = echarts.init(document.getElementById('chart'));
+  
+  // set option
+  chart.setOption(option);
+</script>
+</body>
+</html>
