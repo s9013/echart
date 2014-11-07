@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+</head>
+<body>
+<div id="chart" style="height:400px;"></div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript" src="echarts-plain.js"></script>
+<script type="text/javascript">
+    
+    var data = [10,30,50,50,90,80,70,60,40,50];
+                  
+      var resultData = [];
+      for(var i=0 ; i<data.length; i++){
+          var color = '';
+          if(data[i]<=50){
+              color = 'rgb(253,158,78)';
+          }else if(data[i]>50 && data[i]<70){
+              color = 'rgb(111,194,116)';
+          }else{
+              color = 'rgb(251,110,103)';
+          }
+          var item = {
+                  value:data[i],
+                  itemStyle:{
+                      normal:{
+                          color:color
+                      }
+                  }
+          };
+          resultData.push(item);
+      }
+                  
+                  
+                var xAxis = ['蛋白质','脂肪','碳水化合物','水','维生素','矿物质','纤维素','钙','铁','锌'];
+                var markPointData = [];
+                for(var i=0; i<data.length; i++){
+                    // 最大最小
+                    if(data[i]<50){
+                        markPointData.push({
+                                            name: '偏低', 
+                                            //value: '',
+                                            xAxis: xAxis[i],
+                                            yAxis: data[i],
+                                            itemStyle:{
+                                                  normal:{
+                                                      color:"rgb(255,155,77)",
+                                                      borderColor: '#87cefa',
+                                                        borderWidth:3,           
+                                                        label: {
+                                                            show: true
+                                                        }
+                                                  }
+                                            }
+                                         });
+                    }else if(data[i]>70){
+                        markPointData.push({
+                                            name: '偏高',
+                                            //value: '',
+                                            xAxis: xAxis[i],
+                                            yAxis: data[i],
+                                            itemStyle:{
+                                                  normal:{
+                                                      color:"rgb(243,120,113)",
+                                                      borderColor: '#87cefa',
+                                                        borderWidth:3,           
+                                                        label: {
+                                                            show: true
+                                                        }
+                                                  }
+                                            }
+                                        });
+                    }
+                }  
+
+                  
+
+               
+                var option = {
+                        tooltip : {
+                            trigger: 'axis',
+                            formatter:function (params,ticket,callback) {
+                                return params[0][2]+'%';
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : xAxis,
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                axisLabel:{
+                                    formatter : '{value}%'
+                                }
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'',
+                                type:'bar',
+                                barGap:'50%',
+                                barCategoryGap:'60%',
+                                data:resultData,
+                                markPoint : {
+                                    symbolSize:15,
+                                    data : markPointData,
+                                },
+                                markLine : {
+                                    data : [
+                                            [ 
+                                                {name: '偏低起点',value:'偏低50%',xAxis: -1, yAxis: 50},    
+                                                {name: '偏低终点', xAxis:20, yAxis: 50},
+                                            ],
+                                            [ 
+                                                {name: '偏高起点',value:'偏高70%',xAxis: -1, yAxis: 70},    
+                                                {name: '偏高终点', xAxis:20, yAxis: 70}
+                                            ]
+                                    ],
+                                    itemStyle:{
+                                          normal:{
+                                              color:'green'
+                                          }
+                                    }
+                                }
+                            }
+                            
+                        ]
+                    };
+                    
+                     var chart = echarts.init($('#chart')[0]);
+                    chart.setOption(option); 
+
+                    chart.on('click', function(e){
+                        console.log(e);
+                    });
+     
+
+</script>
+</body>
+</html>
