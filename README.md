@@ -11,6 +11,8 @@ demo1 http://s9013.github.io/echart/app/index.html
 
 fly	http://s9013.github.io/echart/app/fly.html
 
+两个y轴：http://s9013.github.io/echart/app/2y.html
+
 导入echarts.js
 
 // option
