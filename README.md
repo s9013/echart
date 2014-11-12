@@ -16,3 +16,5 @@ fly	http://s9013.github.io/echart/app/fly.html
 markline http://s9013.github.io/echart/app/markline.html
 
 markpoint http://s9013.github.io/echart/app/markpoint.html
+
+addData http://s9013.github.io/echart/app/addData.html
