@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Echarts</title>
-  <style type="text/css">
-  html,body{ 
-      -webkit-text-size-adjust:none; 
-} 
-  </style>
 </head>
 <body>
-  学习echarts <div style="font-size: 1px">123你好</div>
+  两个y轴
   <div id="chart" style="height:500px"></div>
-  <button id="btn">添加数据</button>
+
 </body>
 <script src="vender/echarts-plain-original.js"></script>
 <script>
@@ -22,7 +17,7 @@
                         show: true
                     },
                     legend: {
-                        data:['销量']
+                        data:['销量1','销量2']
                     },
                     xAxis : [
                         {
@@ -33,13 +28,33 @@
                     yAxis : [
                         {
                             type : 'value'
+                        },
+                         {
+                            type : 'value'
                         }
                     ],
                     series : [
                         {
-                            "name":"销量",
-                            "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "name":"销量1",
+                            "type":"line",
+							symbolSize: 10,
+                            "data":[5, 20, 40, 10, 10, 20],
+							itemStyle: {
+								normal: {
+									color: 'red',
+									lineStyle: {        // 系列级个性化折线样式
+										width: 20,
+										//type: 'dashed'
+									}
+								}
+								
+							}
+                        },
+                        {
+                            "name":"销量2",
+                            "type":"line",
+                            "data":[52, 20, 40, 10, 10, 20],
+                             yAxisIndex:1,
                         }
                     ]
                 };
@@ -49,19 +64,6 @@
   
   // set option
   chart.setOption(option);
-
-  // 添加数据
-  document.getElementById('btn').addEventListener('click',function(){
-    console.log(1);
-    chart.addData([
-        [
-            0,
-            10, // 新增数据
-            false,     // 新增数据是否从队列头部插入
-            true ,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
-            '新增x'
-        ]]);
-  });
 
 </script>
 </html>
